@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "claude-shannon-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "SHANNON",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "compute_shannon_entropy_capacity",
+          "description": "Calculates source information entropy H(X) and Shannon-Hartley channel capacity limit C = B log2(1 + SNR)",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "bandwidth_hz": {
+                "type": "number"
+              },
+              "snr_db": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "bandwidth_hz",
+              "snr_db"
+            ]
+          }
+        },
+        {
+          "name": "verify_one_time_pad_equivocation",
+          "description": "Evaluates cryptographic key equivocation and verifies information-theoretic unconditional security",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "entropy_bits": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "entropy_bits"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
